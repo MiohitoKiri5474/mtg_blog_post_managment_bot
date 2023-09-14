@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "url-shortener"
+name = "mtg_blog_post_system"
 version = "0.1.0"
-description = "This is an URL shortener power by FastAPI."
+description = "Guildmages' Forum blog post system."
 authors = ["miohitokiri5474 <lltzpp>"]
 license = "MIT License"
 readme = "README.md"
-packages = [{include = "url_shortener"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.11"
