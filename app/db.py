@@ -3,7 +3,7 @@
 import os
 import sqlite3
 
-DB_PATH = "post_syso.db"
+DB_PATH = "post_sys.db"
 
 
 def build_db():
@@ -16,14 +16,14 @@ def build_db():
     cursor.execute(
         """CREATE TABLE IF NOT EXISTS post_info (
         post_name TEXT PRIMARY KEY,
-        url TEXT PRIMARY KEY,
+        url TEXT,
         username TEXT,
         status TEXT
         )"""
     )
     conn.commit()
 
-    cursot.execute(
+    cursor.execute(
         """CREATE TABLE IF NOT EXISTS user_info (
         name TEXT PRIMARY KEY,
         passwd BLOB,
@@ -125,11 +125,7 @@ def check_post_name_is_available(post_name: str):
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute(
-        "SELECT code FROM post_info WHERE code = ?"(
-            post_name,
-        )
-    )
+    cursor.execute("SELECT code FROM post_info WHERE code = ?", (post_name,))
     result = cursor.fetchone()
     conn.close()
 
@@ -138,7 +134,7 @@ def check_post_name_is_available(post_name: str):
 
 def insert_post(post_name: str, url: str, username: str, status):
     """add a post into database"""
-    if not check_admin_code_is_available(admin_url):
+    if not check_post_name_is_available(post_name):
         raise ValueError(
             "The chosen post name is already taken, Please choose a different post name."
         )
@@ -156,7 +152,7 @@ def insert_post(post_name: str, url: str, username: str, status):
 def update_status(post_name: str, status: str):
     """update status"""
 
-    conn - sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute(
         "UPDATE post_info SET status = ? WHERE post_name = ?", (status, post_name)

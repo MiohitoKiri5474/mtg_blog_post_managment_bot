@@ -19,5 +19,4 @@ Thumbs.db
 # Application specific files
 node_modules
 .sass-cache
-*.py
-
+*.db
