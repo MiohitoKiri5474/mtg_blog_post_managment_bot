@@ -84,6 +84,18 @@ def list_post(status: str):
     return all_post
 
 
+def list_all_post_in_ddb():
+    """List all post in ddb"""
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM post_info")
+    all_post = cursor.fetchall()
+    cursor.close()
+
+    return all_post
+
+
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -144,8 +156,15 @@ async def Help(ctx):  # pylint: disable=C0103
     await ctx.send(
         "!New_Post [文章名稱] [hackmd 網址] [作者名稱] [文章狀態]：將新文章加入資料庫\n"
         + "!List [狀態]：列出目前所有符合 [狀態] 的文章\n"
-        + "!Update_Status [文章名稱] [文章狀態]：更新文章狀態"
+        + "!Update_Status [文章名稱] [文章狀態]：更新文章狀態\n"
+        + "!List_All_Post：列出所有文章"
     )
+
+
+@bot.command()
+async def List_All_Post(ctx):  # pylint: disable=C0103
+    """List all post"""
+    await ctx.send(list_all_post_in_ddb())
 
 
 build_db()
