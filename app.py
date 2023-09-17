@@ -93,7 +93,11 @@ def list_all_post_in_ddb():
     all_post = cursor.fetchall()
     cursor.close()
 
-    return all_post
+    res = ""
+    for i in all_post:
+        res = res + f"{i[0]} {i[1]} {i[2]} {i[3]}\n"
+
+    return res
 
 
 intents = discord.Intents.all()
