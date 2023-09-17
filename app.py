@@ -95,7 +95,7 @@ def list_all_post_in_ddb():
 
     res = "```\n"
     for i in all_post:
-        res = res + f"{i[0]}\t\t{i[1]}\t\t{i[2]}\t\t{i[3]}\n"
+        res = res + f"{i[0]} {i[1]} {i[2]} {i[3]}\n"
     res = res + "```\n"
 
     return res
@@ -168,6 +168,12 @@ async def Help(ctx):  # pylint: disable=C0103
 
 @bot.command()
 async def List_All_Post(ctx):  # pylint: disable=C0103
+    """List all post"""
+    await ctx.send(list_all_post_in_ddb())
+
+
+@bot.command()
+async def list_all_post(ctx):
     """List all post"""
     await ctx.send(list_all_post_in_ddb())
 
