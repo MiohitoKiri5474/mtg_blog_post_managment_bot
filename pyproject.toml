@@ -1,33 +1,15 @@
 [tool.poetry]
-name = "mtg_blog_post_system"
+name = "post-sys"
 version = "0.1.0"
-description = "Guildmages' Forum blog post system."
+description = ""
 authors = ["miohitokiri5474 <lltzpp>"]
-license = "MIT License"
 readme = "README.md"
-packages = []
+packages = [{include = "post_sys"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = "^0.101.1"
-uvicorn = "^0.23.2"
-pydantic = "^2.1.1"
-bcrypt = "^4.0.1"
-python-multipart = "^0.0.6"
-python-jose = "^3.3.0"
-passlib = "^1.7.4"
-requests = "^2.31.0"
-httpx = "^0.24.1"
-pre-commit = "^3.4.0"
-pytest = "^7.4.2"
+discord-py = "^2.3.2"
 
-
-[tool.poetry.group.dev.dependencies]
-black = "^23.7.0"
-isort = "^5.12.0"
-pylint = "^2.17.5"
-pytest = "^7.4.0"
-pytest-asyncio = "^0.21.1"
 
 [build-system]
 requires = ["poetry-core"]
