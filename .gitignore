@@ -20,4 +20,3 @@ Thumbs.db
 node_modules
 .sass-cache
 *.db
-token.json
