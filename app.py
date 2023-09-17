@@ -93,9 +93,10 @@ def list_all_post_in_ddb():
     all_post = cursor.fetchall()
     cursor.close()
 
-    res = ""
+    res = "```\n"
     for i in all_post:
-        res = res + f"{i[0]} {i[1]} {i[2]} {i[3]}\n"
+        res = res + f"{i[0]}\t\t{i[1]}\t\t{i[2]}\t\t{i[3]}\n"
+    res = res + "```\n"
 
     return res
 
