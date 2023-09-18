@@ -108,7 +108,7 @@ def list_all_post_in_ddb():
 
 def delete_post_in_ddb(post_name):
     """Delete post in ddb"""
-    if not check_post_name_is_available(post_name):
+    if check_post_name_is_available(post_name):
         return "資料庫中並無此文章：" + post_name
 
     conn = sqlite3.connect(DB_PATH)
