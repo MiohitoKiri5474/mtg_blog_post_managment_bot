@@ -117,7 +117,7 @@ def delete_post_in_ddb(post_name):
     conn.commit()
     conn.close()
 
-    return "文章已刪除"
+    return "文章 " + post_name + " 已刪除"
 
 
 intents = discord.Intents.all()
