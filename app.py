@@ -83,7 +83,7 @@ def list_post(status: str):
 
     res = "```\n"
     for i in all_post:
-        res = res + i[0] + " " + i[1]
+        res = res + i[0] + " " + i[1] + "\n"
     res = res + "```\n"
 
     return res
