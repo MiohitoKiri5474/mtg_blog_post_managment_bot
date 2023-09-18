@@ -81,7 +81,12 @@ def list_post(status: str):
     all_post = cursor.fetchall()
     cursor.close()
 
-    return all_post
+    res = "```\n"
+    for i in all_post:
+        res = res + i[0] + " " + i[1]
+    res = res + "```\n"
+
+    return res
 
 
 def list_all_post_in_ddb():
@@ -101,6 +106,20 @@ def list_all_post_in_ddb():
     return res
 
 
+def delete_post_in_ddb(post_name):
+    """Delete post in ddb"""
+    if not check_post_name_is_available(post_name):
+        return "資料庫中並無此文章：" + post_name
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM post_info WHERE post_name = ?", (post_name,))
+    conn.commit()
+    conn.close()
+
+    return "文章已刪除"
+
+
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -111,7 +130,7 @@ def new_post_tmp(args1, args2, args3, args4):
         insert_post(args1, args2, args3, args4)
         return "文章 " + args1 + " 成功加入資料庫"
     except ValueError:
-        return "文章已在資料庫中，請檢查網址是否錯誤"
+        return "文章 " + args1 + " 已在資料庫中，請檢查網址是否錯誤"
 
 
 @bot.event
@@ -160,8 +179,9 @@ async def Help(ctx):  # pylint: disable=C0103
     """List all command"""
     await ctx.send(
         "!New_Post [文章名稱] [hackmd 網址] [作者名稱] [文章狀態]：將新文章加入資料庫\n"
-        + "!List [狀態]：列出目前所有符合 [狀態] 的文章\n"
         + "!Update_Status [文章名稱] [文章狀態]：更新文章狀態\n"
+        + "!Delete [文章名稱]： 刪除文章\n"
+        + "!List [狀態]：列出目前所有符合 [狀態] 的文章\n"
         + "!List_All_Post：列出所有文章"
     )
 
@@ -176,6 +196,18 @@ async def List_All_Post(ctx):  # pylint: disable=C0103
 async def list_all_post(ctx):
     """List all post"""
     await ctx.send(list_all_post_in_ddb())
+
+
+@bot.command()
+async def Delete_Post(ctx, post_name):  # pylint: disable=C0103
+    """Delete post"""
+    await ctx.send(delete_post_in_ddb(post_name))
+
+
+@bot.command()
+async def delete_post(ctx, post_name):
+    """Delete post"""
+    await ctx.send(delete_post_in_ddb(post_name))
 
 
 build_db()
