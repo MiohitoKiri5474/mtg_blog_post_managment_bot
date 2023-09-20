@@ -180,7 +180,7 @@ async def Help(ctx):  # pylint: disable=C0103
     await ctx.send(
         "!New_Post [文章名稱] [hackmd 網址] [作者名稱] [文章狀態]：將新文章加入資料庫\n"
         + "!Update_Status [文章名稱] [文章狀態]：更新文章狀態\n"
-        + "!Delete [文章名稱]： 刪除文章\n"
+        + "!Delete_Post [文章名稱]： 刪除文章\n"
         + "!List [狀態]：列出目前所有符合 [狀態] 的文章\n"
         + "!List_All_Post：列出所有文章"
     )
