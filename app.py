@@ -182,7 +182,8 @@ async def Help(ctx):  # pylint: disable=C0103
         + "!Update_Status [文章名稱] [文章狀態]：更新文章狀態\n"
         + "!Delete_Post [文章名稱]： 刪除文章\n"
         + "!List [狀態]：列出目前所有符合 [狀態] 的文章\n"
-        + "!List_All_Post：列出所有文章"
+        + "!List_All_Post：列出所有文章\n"
+        + "!List_Status: 列出所有狀態"
     )
 
 
@@ -208,6 +209,27 @@ async def Delete_Post(ctx, post_name):  # pylint: disable=C0103
 async def delete_post(ctx, post_name):
     """Delete post"""
     await ctx.send(delete_post_in_ddb(post_name))
+
+
+@bot.command()
+async def List_Status ( ctx, post_name ):  # pylint: disable=C0103
+    """Listing all post status"""
+    await ctx.send ( "Writing: 還未完稿\n"
+                    + "Done: 完稿未審\n"
+                    + "Ready_to_Post: 準備發出\n"
+                    + "Posted: 已發出，未完成粉專發文\n"
+                    + "Done: 已發出，且完成粉專發文" )
+
+
+
+@bot.command()
+async def list_status ( ctx, post_name ):
+    """Listing all post status"""
+    await ctx.send ( "Writing: 還未完稿\n"
+                    + "Done: 完稿未審\n"
+                    + "Ready_to_Post: 準備發出\n"
+                    + "Posted: 已發出，未完成粉專發文\n"
+                    + "Done: 已發出，且完成粉專發文" )
 
 
 build_db()
