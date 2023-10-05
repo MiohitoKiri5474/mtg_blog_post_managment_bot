@@ -219,7 +219,7 @@ async def List_Status(ctx):  # pylint: disable=C0103
     await ctx.send(
         "```\n"
         + "Writing: 還未完稿\n"
-        + "Done: 完稿未審\n"
+        + "Finish: 完稿未審\n"
         + "Ready_to_Post: 準備發出\n"
         + "Posted: 已發出，未完成粉專發文\n"
         + "Done: 已發出，且完成粉專發文\n"
@@ -233,7 +233,7 @@ async def list_status(ctx):
     await ctx.send(
         "```\n"
         + "Writing: 還未完稿\n"
-        + "Done: 完稿未審\n"
+        + "Finish: 完稿未審\n"
         + "Ready_to_Post: 準備發出\n"
         + "Posted: 已發出，未完成粉專發文\n"
         + "Done: 已發出，且完成粉專發文\n"
