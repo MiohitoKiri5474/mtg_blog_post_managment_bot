@@ -164,14 +164,14 @@ async def List(ctx, status):  # pylint: disable=C0103
 async def Update_Status(ctx, args1, args2):  # pylint: disable=C0103
     """Update post status"""
     update_status_in_ddb(args1, args2)
-    await ctx.send("已成功更新文章狀態")
+    await ctx.send("已成功更新文章狀態\n" + list_all_post_in_ddb())
 
 
 @bot.command()
 async def update_status(ctx, args1, args2):
     """Update post status"""
     update_status_in_ddb(args1, args2)
-    await ctx.send("已成功更新文章狀態")
+    await ctx.send("已成功更新文章狀態\n" + list_all_post_in_ddb())
 
 
 @bot.command()
